@@ -40,15 +40,9 @@ def menu():
 
 def prompt_add_new_bean(connection):
     name = input("Enter bean name: ")
-    if not name.isalpha():
-        print("Invalid name, please try again!\n")
-    else:
-        name = name.title()
+    name = name.title()
     method = input("Enter how you've prepared it: ")
-    if not method.isalpha():
-        print("Invalid method, please try again!\n")
-    else:
-        method = method.title()
+    method = method.title()
     rating = int(input("Enter your rating score (0-10): "))
     if rating < 0 or rating > 10:
         print("Invalid rating, please try again!\n")
