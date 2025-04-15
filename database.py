@@ -3,9 +3,10 @@ import sqlite3
 CREATE_BEANS_TABLE = "CREATE TABLE IF NOT EXISTS beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);"
 
 INSERT_BEAN = "INSERT INTO beans (name, method, rating) VALUES (?, ?, ?);"
-
+GET_DELETE_BEAN = "DELETE FROM beans WHERE name = ?;"
 GET_ALL_BEANS = "SELECT * FROM beans;"
 GET_BEANS_BY_NAME = "SELECT * FROM beans WHERE name = ?;"
+GET_BEANS_BY_RATING = "SELECT * FROM beans WHERE rating BETWEEN ? AND ?;"
 GET_BEST_PREPARATION_FOR_BEAN = """
 SELECT * FROM beans
 WHERE name = ?
@@ -23,6 +24,10 @@ def add_bean(connection, name, method, rating):
     with connection:
         connection.execute(INSERT_BEAN, (name, method, rating))
 
+def get_delete_bean(connection, name):
+    with connection:
+        connection.execute(GET_DELETE_BEAN, (name,)).fetchone()
+
 def get_all_beans(connection):
     with connection:
         return connection.execute(GET_ALL_BEANS).fetchall()
@@ -30,6 +35,10 @@ def get_all_beans(connection):
 def get_beans_by_name(connection, name):
     with connection:
         return connection.execute(GET_BEANS_BY_NAME, (name,))
+
+def get_beans_by_rating(connection, min_rating, max_rating):
+    with connection:
+        return connection.execute(GET_BEANS_BY_RATING, (min_rating, max_rating,))
 
 def get_best_preparation_for_bean(connection, name):
     with connection:
