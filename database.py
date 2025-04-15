@@ -1,6 +1,6 @@
 import sqlite3
 
-CREATE_BEANS_TABLE = "CREATE TABLE IF NOT EXISTS beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);"
+CREATE_BEANS_TABLE = "CREATE TABLE IF NOT EXISTS beans (ID INTEGER PRIMARY KEY, Name TEXT, Method TEXT, Rating INTEGER);"
 
 INSERT_BEAN = "INSERT INTO beans (name, method, rating) VALUES (?, ?, ?);"
 GET_DELETE_BEAN = "DELETE FROM beans WHERE name = ?;"
